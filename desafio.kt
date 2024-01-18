@@ -1,15 +1,21 @@
 // [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
 
+// Cria enum class dos valores padrão de nível
 enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
 
+// Cria classe de usuário
 class Usuario
 
+// Cria data class do conteúdo 
 data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
 
+// Cria data class da formação
 data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
 
+    // Variável inscritos armazena uma lista mutável de usuários
     val inscritos = mutableListOf<Usuario>()
     
+    // Método matricular serve para matricular usuário
     fun matricular(usuario: Usuario) {
         TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
     }
