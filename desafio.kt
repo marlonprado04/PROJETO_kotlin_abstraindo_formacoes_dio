@@ -1,10 +1,5 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
-
-// Cria enum class dos valores padrão de nível
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
-
 // Cria classe de usuário
-class Usuario
+data class Usuario(val nome: String, val email: String)
 
 // Cria data class do conteúdo 
 data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
@@ -17,11 +12,45 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
     
     // Método matricular serve para matricular usuário
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+        inscritos.add(usuario)
+        println("Usuário ${usuario.nome} matriculado na formação ${nome}.")
     }
+    
+    // Adiciona um método para exibir os inscritos na formação
+    fun exibirInscritos() {
+        println("Inscritos na formação ${nome}:")
+        inscritos.forEach { println(it) }
+    }
+
+    // Adiciona um método para remover um usuário da formação
+    fun desmatricular(usuario: Usuario) {
+        inscritos.remove(usuario)
+        println("Usuário ${usuario.nome} removido da formação ${nome}.")
+    }
+
+    // Cria um método para adicionar conteúdo à formação
+    fun adicionarConteudo(conteudo: ConteudoEducacional) {
+        conteudos += conteudo
+        println("Conteúdo ${conteudo.nome} adicionado à formação ${nome}.")
+    }
+
 }
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+    val usuario1 = Usuario("João", "joao@email.com")
+    val usuario2 = Usuario("Maria", "maria@email.com")
+
+    val conteudo1 = ConteudoEducacional("Introdução ao Kotlin")
+    val conteudo2 = ConteudoEducacional("Programação Orientada a Objetos")
+
+    val formacao = Formacao("Desenvolvimento Kotlin", listOf(conteudo1, conteudo2))
+
+    formacao.matricular(usuario1)
+    formacao.matricular(usuario2)
+    formacao.exibirInscritos()
+
+    formacao.desmatricular(usuario1)
+    formacao.exibirInscritos()
+
+    formacao.adicionarConteudo(ConteudoEducacional("Trabalhando com Listas"))
 }
